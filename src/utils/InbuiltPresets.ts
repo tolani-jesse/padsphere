@@ -1,0 +1,21 @@
+export interface InbuiltPreset {
+  id: string;
+  name: string;
+  folderName: string;
+  fileSuffix: string;
+}
+
+export const INBUILT_PRESETS: InbuiltPreset[] = [
+  {
+    id: 'default',
+    name: 'Warm Pads',
+    folderName: 'Warm Pads',
+    fileSuffix: ' - WARM.mp3'
+  },
+  {
+    id: 'calming-waves',
+    name: 'Calming Waves Pad',
+    folderName: 'Calming Waves Pad',
+    fileSuffix: ' - Calming Waves.mp3'
+  }
+];
