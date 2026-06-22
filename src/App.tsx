@@ -3,7 +3,7 @@ import { Pencil, Plus, Download, Trash2 } from 'lucide-react';
 import JSZip from 'jszip';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
-import { ask, message } from '@tauri-apps/plugin-dialog';
+import { ask } from '@tauri-apps/plugin-dialog';
 import './index.css';
 import PianoKeyboard from './components/PianoKeyboard';
 import GridKeyboard from './components/GridKeyboard';
@@ -402,7 +402,7 @@ function App() {
 
       {isNewMenuOpen && (
         <div className="presets-overlay" style={{ alignItems: 'center', justifyContent: 'center' }} onClick={() => setIsNewMenuOpen(false)}>
-          <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: '12px', width: '300px', display: 'flex', flexDirection: 'column', gap: '0.8rem', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }} onClick={e => e.stopPropagation()}>
+          <div style={{ padding: '1.5rem', borderRadius: '12px', width: '300px', display: 'flex', flexDirection: 'column', gap: '0.8rem', background: '#1a1d27', border: '1px solid var(--glass-border)', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }} onClick={e => e.stopPropagation()}>
             <div className="overlay-header" style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2 className="title" style={{ fontSize: '1.1rem', margin: 0 }}>New Preset</h2>
               <button className="btn" style={{ padding: '0.2rem 0.6rem' }} onClick={() => setIsNewMenuOpen(false)}>✕</button>
