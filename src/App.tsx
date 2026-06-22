@@ -3,7 +3,8 @@ import { Pencil, Plus, Download, Trash2 } from 'lucide-react';
 import JSZip from 'jszip';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
-import { ask } from '@tauri-apps/plugin-dialog';
+import { ask, message } from '@tauri-apps/plugin-dialog';
+import { listen } from '@tauri-apps/api/event';
 import './index.css';
 import PianoKeyboard from './components/PianoKeyboard';
 import GridKeyboard from './components/GridKeyboard';
@@ -118,10 +119,19 @@ function App() {
     loadPresetById(defaultId);
 
     // Silent Auto-Update Check on Mount
-    checkForUpdates();
+    checkForUpdates(true);
+
+    // Listen for manual checks from Native OS Menu
+    const unlisten = listen('trigger-update-check', () => {
+      checkForUpdates(false);
+    });
+
+    return () => {
+      unlisten.then(f => f());
+    };
   }, []);
 
-  const checkForUpdates = async () => {
+  const checkForUpdates = async (silent = true) => {
     try {
       const update = await check();
       if (update) {
@@ -149,9 +159,14 @@ function App() {
           
           await relaunch();
         }
+      } else if (!silent) {
+        await message('PadSphere is already up to date!', { title: 'No Updates', kind: 'info' });
       }
     } catch (error) {
       console.error('Updater check skipped or failed:', error);
+      if (!silent) {
+        await message(`Failed to check for updates: ${error}`, { title: 'Update Failed', kind: 'error' });
+      }
     }
   };
 

@@ -1,3 +1,6 @@
+use tauri::menu::{Menu, MenuItemBuilder, SubmenuBuilder};
+use tauri::{Emitter, Manager};
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -12,6 +15,29 @@ pub fn run() {
                         .build(),
                 );
             }
+
+            let handle = app.handle();
+            if let Ok(menu) = Menu::default(handle) {
+                if let Ok(check_updates) = MenuItemBuilder::new("Check for Updates...")
+                    .id("check-updates")
+                    .build(handle)
+                {
+                    if let Ok(help_submenu) = SubmenuBuilder::new(handle, "Help")
+                        .item(&check_updates)
+                        .build()
+                    {
+                        let _ = menu.append(&help_submenu);
+                    }
+                }
+                let _ = app.set_menu(menu);
+            }
+
+            app.on_menu_event(move |app, event| {
+                if event.id().0 == "check-updates" {
+                    let _ = app.emit("trigger-update-check", ());
+                }
+            });
+
             Ok(())
         })
         .run(tauri::generate_context!())
