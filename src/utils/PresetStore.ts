@@ -6,6 +6,7 @@ export interface CustomPreset {
   name: string;
   files: Record<string, Blob>; // maps key (e.g., 'C', 'C#') to audio file blob
   updatedAt?: number;
+  isImported?: boolean;
 }
 
 export class PresetStore {
@@ -16,12 +17,13 @@ export class PresetStore {
     });
   }
 
-  async savePreset(name: string, files: Record<string, Blob>): Promise<CustomPreset> {
+  async savePreset(name: string, files: Record<string, Blob>, isImported: boolean = false): Promise<CustomPreset> {
     const preset: CustomPreset = {
       id: uuidv4(),
       name,
       files,
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      isImported
     };
     await localforage.setItem(preset.id, preset);
     return preset;

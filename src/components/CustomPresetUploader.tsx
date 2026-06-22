@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { X } from 'lucide-react';
 import { presetStore, type CustomPreset } from '../utils/PresetStore';
 
 const ALL_KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -108,7 +109,7 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
   };
 
   return (
-    <div className="presets-overlay">
+    <div className="presets-overlay" style={{ background: 'var(--bg-dark)', backdropFilter: 'none' }}>
       <div className="overlay-header">
         <h2 className="title" style={{ fontSize: '1.2rem' }}>
           {initialPreset ? 'Edit Custom Preset' : 'Create Custom Preset'}
@@ -161,7 +162,7 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
                 onClick={(e) => handleClearFile(key, e)}
                 title="Remove audio"
               >
-                ✕
+                <X size={14} />
               </button>
             )}
             <div className="dropzone-key">{key}</div>

@@ -32,36 +32,6 @@ body {
   /* Desktop app feel */
 }
 
-/* Background subtle animation */
-.bg-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(138, 114, 255, 0.15) 0%, rgba(138, 114, 255, 0.05) 25%, transparent 40%),
-    radial-gradient(circle at 70% 60%, rgba(65, 105, 225, 0.15) 0%, rgba(65, 105, 225, 0.05) 30%, transparent 45%),
-    radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.03) 20%, transparent 35%);
-  animation: bg-drift 30s ease-in-out infinite alternate;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@keyframes bg-drift {
-  0% {
-    transform: translate(-10%, -10%) rotate(0deg);
-  }
-
-  50% {
-    transform: translate(-20%, -15%) rotate(15deg);
-  }
-
-  100% {
-    transform: translate(-30%, -30%) rotate(0deg);
-  }
-}
-
 /* Glassmorphism Panel Utility */
 .glass-panel {
   background: var(--glass-bg);
@@ -83,15 +53,26 @@ body {
   gap: 1.5rem;
 }
 
-/* Header */
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* We don't want the 3 columns to wrap awkwardly */
   gap: 1rem;
 }
+
+@media (max-width: 950px) {
+  .app-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .header-left, .header-right {
+    justify-content: center !important;
+  }
+}
+
 
 .preset-selector {
   display: flex;
@@ -571,8 +552,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(9, 11, 20, 0.95);
-  backdrop-filter: blur(20px);
+  background: rgba(9, 11, 20, 0.7);
+  backdrop-filter: blur(12px);
   z-index: 100;
   display: flex;
   flex-direction: column;
