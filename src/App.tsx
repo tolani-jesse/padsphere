@@ -347,7 +347,6 @@ function App() {
             setVolume={handleVolumeChange}
             octave={octave}
             setOctave={handleOctaveChange}
-            onCheckForUpdates={() => checkForUpdates(false)}
           />
         </footer>
         

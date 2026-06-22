@@ -6,10 +6,9 @@ interface ControlPanelProps {
   setVolume: (v: number) => void;
   octave: number;
   setOctave: (o: number) => void;
-  onCheckForUpdates: () => void;
 }
 
-export default function ControlPanel({ volume, setVolume, octave, setOctave, onCheckForUpdates }: ControlPanelProps) {
+export default function ControlPanel({ volume, setVolume, octave, setOctave }: ControlPanelProps) {
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = Number(e.target.value);
     const remainder = val % 10;
@@ -69,11 +68,6 @@ export default function ControlPanel({ volume, setVolume, octave, setOctave, onC
         </div>
       </div>
 
-      <div className="control-group" style={{ marginLeft: 'auto' }}>
-        <button className="primary-btn" onClick={onCheckForUpdates} style={{ padding: '8px 16px', fontSize: '0.9rem' }}>
-          Check for Updates
-        </button>
-      </div>
     </div>
   );
 }
