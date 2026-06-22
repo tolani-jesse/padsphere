@@ -1,0 +1,23 @@
+{
+  "version": "1.0.1",
+  "notes": "See the assets to download this version and install.",
+  "pub_date": "2026-06-22T20:07:26.885Z",
+  "platforms": {
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
+    },
+    "darwin-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
+    },
+    "darwin-aarch64-app": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
+    },
+    "darwin-x86_64-app": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
+    }
+  }
+}

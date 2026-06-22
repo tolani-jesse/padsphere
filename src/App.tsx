@@ -3,6 +3,7 @@ import { Pencil, Plus, Download, Trash2 } from 'lucide-react';
 import JSZip from 'jszip';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
+import { ask, message } from '@tauri-apps/plugin-dialog';
 import './index.css';
 import PianoKeyboard from './components/PianoKeyboard';
 import GridKeyboard from './components/GridKeyboard';
@@ -30,9 +31,13 @@ function App() {
   const [isNewMenuOpen, setIsNewMenuOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-
   const [isLoading, setIsLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
+
+  // Updater State
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(0);
+  const [downloadTotal, setDownloadTotal] = useState(0);
 
   // Only show the loader if loading takes more than 150ms to prevent flashing on cached presets
   useEffect(() => {
@@ -112,26 +117,48 @@ function App() {
     const defaultId = localStorage.getItem('padsphere-default-preset') || 'default';
     loadPresetById(defaultId);
 
-    // Silent Auto-Update Check
-    const checkForUpdates = async () => {
-      try {
-        const update = await check();
-        if (update) {
-          const shouldUpdate = window.confirm(
-            `A new version of PadSphere (${update.version}) is available!\n\nDo you want to download and install it now?`
-          );
-          if (shouldUpdate) {
-            await update.downloadAndInstall();
-            await relaunch();
-          }
-        }
-      } catch (error) {
-        // Will throw in normal browser environments, which is fine
-        console.log('Updater check skipped or failed:', error);
-      }
-    };
-    checkForUpdates();
+    // Silent Auto-Update Check on Mount
+    checkForUpdates(true);
   }, []);
+
+  const checkForUpdates = async (silent = false) => {
+    try {
+      const update = await check();
+      if (update) {
+        const shouldUpdate = await ask(
+          `A new version of PadSphere (${update.version}) is available!\n\nDo you want to download and install it now?`,
+          { title: 'Update Available', kind: 'info' }
+        );
+        
+        if (shouldUpdate) {
+          setIsUpdating(true);
+          setDownloadProgress(0);
+          setDownloadTotal(0);
+          
+          let downloaded = 0;
+          await update.downloadAndInstall((event) => {
+            if (event.event === 'Started') {
+              setDownloadTotal(event.data.contentLength || 0);
+            } else if (event.event === 'Progress') {
+              downloaded += event.data.chunkLength;
+              setDownloadProgress(downloaded);
+            } else if (event.event === 'Finished') {
+              setIsUpdating(false);
+            }
+          });
+          
+          await relaunch();
+        }
+      } else if (!silent) {
+        await message('PadSphere is already up to date!', { title: 'No Updates', kind: 'info' });
+      }
+    } catch (error) {
+      console.error('Updater check failed:', error);
+      if (!silent) {
+        await message(`Failed to check for updates: ${error}`, { title: 'Update Failed', kind: 'error' });
+      }
+    }
+  };
 
   const handleKeyClick = async (key: string) => {
     if (activeKey === key) {
@@ -320,6 +347,7 @@ function App() {
             setVolume={handleVolumeChange}
             octave={octave}
             setOctave={handleOctaveChange}
+            onCheckForUpdates={() => checkForUpdates(false)}
           />
         </footer>
         
@@ -391,6 +419,34 @@ function App() {
             <button className="btn" style={{ fontSize: '0.9rem', padding: '0.8rem', textAlign: 'left', background: 'rgba(255,255,255,0.05)', border: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={() => { fileInputRef.current?.click(); setIsNewMenuOpen(false); }}>
               <Download size={16} /> Import Preset (.padsphere)
             </button>
+          </div>
+        </div>
+      )}
+
+      {showLoader && (
+        <div className="loader-overlay">
+          <div className="loader-spinner"></div>
+          <p>Loading presets...</p>
+        </div>
+      )}
+
+      {isUpdating && (
+        <div className="loader-overlay" style={{ flexDirection: 'column', gap: '20px', backgroundColor: 'rgba(10, 10, 10, 0.95)' }}>
+          <div style={{ color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 600 }}>
+            Downloading Update...
+          </div>
+          <div style={{ width: '300px', height: '10px', backgroundColor: 'var(--surface-light)', borderRadius: '5px', overflow: 'hidden' }}>
+            <div 
+              style={{ 
+                width: downloadTotal > 0 ? `${(downloadProgress / downloadTotal) * 100}%` : '0%', 
+                height: '100%', 
+                backgroundColor: 'var(--primary)',
+                transition: 'width 0.1s ease-out'
+              }} 
+            />
+          </div>
+          <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            {downloadTotal > 0 ? `${Math.round((downloadProgress / downloadTotal) * 100)}%` : 'Starting...'}
           </div>
         </div>
       )}

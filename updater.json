@@ -1,15 +1,51 @@
 {
-  "version": "1.0.0",
-  "notes": "Release v1.0.0",
-  "pub_date": "2026-06-22T19:36:43.969Z",
+  "version": "1.0.1",
+  "notes": "See the assets to download this version and install.",
+  "pub_date": "2026-06-22T20:08:04.752Z",
   "platforms": {
+    "linux-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWU2U0d0K3QxTGxuSndVa2lYTjNHdzVMTGh0WnFVTnlnSXU0Q1V2amhmd2hYQ1RtVFdjb0JkM1lwVkR5UytNdjBPNnB5R3QyNFRQNDhpcENsVk5UeVE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM2CWZpbGU6UGFkU3BoZXJlXzEuMC4xX2FtZDY0LkFwcEltYWdlCmg1dElGSTF0dGhiaDVaT2dWSjNQZEM0TFpybmdWRU9IUkovVGFkY0F4T2I3ZXJpc2E0RFZzNFZLdXRXZktLU3ByMW45Z3NDV3dmMXZxcC9hVDV2MkR3PT0K",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_1.0.1_amd64.AppImage"
+    },
+    "linux-x86_64-appimage": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWU2U0d0K3QxTGxuSndVa2lYTjNHdzVMTGh0WnFVTnlnSXU0Q1V2amhmd2hYQ1RtVFdjb0JkM1lwVkR5UytNdjBPNnB5R3QyNFRQNDhpcENsVk5UeVE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM2CWZpbGU6UGFkU3BoZXJlXzEuMC4xX2FtZDY0LkFwcEltYWdlCmg1dElGSTF0dGhiaDVaT2dWSjNQZEM0TFpybmdWRU9IUkovVGFkY0F4T2I3ZXJpc2E0RFZzNFZLdXRXZktLU3ByMW45Z3NDV3dmMXZxcC9hVDV2MkR3PT0K",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_1.0.1_amd64.AppImage"
+    },
+    "linux-x86_64-deb": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVE0ZEZHbk0vVlN5dE9DMzgvU1lMSGRGREtlU2FXU2MzZ2R1Y0tnSnJpZXF5SUlxZWpHMHR2UUhJelpLd29zZzF2emFrTW9pWUxNazd1TDZJS3pTVGdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM2CWZpbGU6UGFkU3BoZXJlXzEuMC4xX2FtZDY0LmRlYgpPd2xnenV1QjB0clYwdm5XbHJTRnZLZG1mbFpHK29MdDZBeStsbnJGOFoxYlpucmU0MytnWTczZlkxdU9SaHNKVFhLVllOQ2dnbE12eHBQUVlWNEVDZz09Cg==",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_1.0.1_amd64.deb"
+    },
+    "linux-x86_64-rpm": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVFrdWl5cEJVTVZpenU4TnJKQldwc1VOekhsTERKaDQ0bCtHZmRuMEtGcitkbS9LazFZSUhXeFVDZDIvSy9VdWg2SjR4RUl0MUI0dmhiU1YzaStlMHdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM2CWZpbGU6UGFkU3BoZXJlLTEuMC4xLTEueDg2XzY0LnJwbQpSNVlWY0JIYXpIRUdqTTh0dVR3bnluWWl1MDljaGxSNkNtbTcvazhGL1I5djh6S0wyQXZjSjFnY0MyTnZaaDA2a2x0YVV0a3V2MlhZbW96VDZaQVhBQT09Cg==",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere-1.0.1-1.x86_64.rpm"
+    },
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWJkZzFEZjgxT2k2REZwWklpUkdKbHZjRS9qVFBEZkVSOVhYVlVBQ0lsbS9JaE5jVjRYNlVFNUxia3BTN0hkZThZR1RyMVYxalBqY2g2UlMvUVBqRGdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODc5CWZpbGU6UGFkU3BoZXJlXzEuMC4xX3g2NF9lbi1VUy5tc2kKTUZEOGx6aEVISGNucEZZdEkrc2pDa1VuRE1KbjJlOUtUc3Z4cGttSTRQVlFIZ21SdmlFVGtWNm5sWXdrM2FYZG80UnA0TStsWDdSY2ZvbDd4WHM5QlE9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_1.0.1_x64_en-US.msi"
+    },
+    "windows-x86_64-msi": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWJkZzFEZjgxT2k2REZwWklpUkdKbHZjRS9qVFBEZkVSOVhYVlVBQ0lsbS9JaE5jVjRYNlVFNUxia3BTN0hkZThZR1RyMVYxalBqY2g2UlMvUVBqRGdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODc5CWZpbGU6UGFkU3BoZXJlXzEuMC4xX3g2NF9lbi1VUy5tc2kKTUZEOGx6aEVISGNucEZZdEkrc2pDa1VuRE1KbjJlOUtUc3Z4cGttSTRQVlFIZ21SdmlFVGtWNm5sWXdrM2FYZG80UnA0TStsWDdSY2ZvbDd4WHM5QlE9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_1.0.1_x64_en-US.msi"
+    },
+    "windows-x86_64-nsis": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWYxTHcxeWorVkdxaTlLR1JYS2dSUWZPaFRNRmlDMzV0Tk9NYVdTa0QyTjNBMWFLQ3VLdFJpdTdWaC95R0x3djRFMmc5NzZjTjJaV2NsMGlzK1Jac2dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODc5CWZpbGU6UGFkU3BoZXJlXzEuMC4xX3g2NC1zZXR1cC5leGUKa3JKa1FQVGxOVlhvYWpEc2t2bm4rWTd3N1M3WTFIRHB3bkZuUGx4WTZ0RTUzbkViejZ0VmJrRlZuaTc1RHRkaVFPR0VmV3ZxdnRzaCtvMGNaNHlDREE9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_1.0.1_x64-setup.exe"
+    },
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWJpempXYzQxOUZydDN5bzI5TUd5Tmt6U3JKOFNROU9UYTJlRHlacXhRN1EydFg5ZlpYYzd2cXMvaTVSTzhqdThEWnZYMGVjTk1KZlpuV0M0WXJMSXd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU3MDAzCWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKdEw0Rmkxa2w3ek9WQnRmckRWYmRLRGMzQUU0aFJFOHRocGtnWm1GMGprRE8xM2laYXg3RWZHMGNveWs1U01EVDd6UGtoUVNMWFl2TTRnd09MYmF5Qnc9PQo=",
-      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.0/PadSphere.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OWJpempXYzQxOUZydDN5bzI5TUd5Tmt6U3JKOFNROU9UYTJlRHlacXhRN1EydFg5ZlpYYzd2cXMvaTVSTzhqdThEWnZYMGVjTk1KZlpuV0M0WXJMSXd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU3MDAzCWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKdEw0Rmkxa2w3ek9WQnRmckRWYmRLRGMzQUU0aFJFOHRocGtnWm1GMGprRE8xM2laYXg3RWZHMGNveWs1U01EVDd6UGtoUVNMWFl2TTRnd09MYmF5Qnc9PQo=",
-      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.0/PadSphere.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
+    },
+    "darwin-aarch64-app": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
+    },
+    "darwin-x86_64-app": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTd24zYU1CM1c4OVpkN3dkTmVQVDFDUGMyR0lsRHl0MWVyZ1Y3WXhjZnUzcTNXYVhOeXdOb3ZTcytwL1I5YXRoaGVNRVBpVmx0dFdRQ1Eya1dYeUlZUEZROE9DUEdDSXdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU4ODM4CWZpbGU6UGFkU3BoZXJlLmFwcC50YXIuZ3oKc241cHNKWVZMb2hKdDlxY3pPNWl0aFh2aWVxeGdMV1QwTkdEUlB0NDRLS25TVEEzcmRlZUIrWTgzRFA3U3BLdWpDZi9GakdlUDR0dEJrU1c3cFN0RGc9PQo=",
+      "url": "https://github.com/tolani-jesse/padsphere/releases/download/v1.0.1/PadSphere_universal.app.tar.gz"
     }
   }
 }
