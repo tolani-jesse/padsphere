@@ -118,10 +118,10 @@ function App() {
     loadPresetById(defaultId);
 
     // Silent Auto-Update Check on Mount
-    checkForUpdates(true);
+    checkForUpdates();
   }, []);
 
-  const checkForUpdates = async (silent = false) => {
+  const checkForUpdates = async () => {
     try {
       const update = await check();
       if (update) {
@@ -149,14 +149,9 @@ function App() {
           
           await relaunch();
         }
-      } else if (!silent) {
-        await message('PadSphere is already up to date!', { title: 'No Updates', kind: 'info' });
       }
     } catch (error) {
-      console.error('Updater check failed:', error);
-      if (!silent) {
-        await message(`Failed to check for updates: ${error}`, { title: 'Update Failed', kind: 'error' });
-      }
+      console.error('Updater check skipped or failed:', error);
     }
   };
 
@@ -430,7 +425,18 @@ function App() {
       )}
 
       {isUpdating && (
-        <div className="loader-overlay" style={{ flexDirection: 'column', gap: '20px', backgroundColor: 'rgba(10, 10, 10, 0.95)' }}>
+        <div style={{ 
+          position: 'fixed', 
+          top: 0, left: 0, right: 0, bottom: 0, 
+          zIndex: 9999, 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          gap: '20px', 
+          backgroundColor: 'rgba(10, 10, 10, 0.95)',
+          backdropFilter: 'blur(10px)'
+        }}>
           <div style={{ color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 600 }}>
             Downloading Update...
           </div>
