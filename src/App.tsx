@@ -188,7 +188,7 @@ function App() {
     } catch (error) {
       console.error('Updater check skipped or failed:', error);
       if (!silent) {
-        await message(`Failed to check for updates: ${error}`, { title: 'Update Failed', kind: 'error' });
+        await message('Failed to check for updates. Please check your internet connection and try again.', { title: 'Update Failed', kind: 'error' });
       }
     }
   };
