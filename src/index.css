@@ -243,16 +243,6 @@ body {
   gap: 1rem;
 }
 
-@media (max-width: 950px) {
-  .app-header {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .header-left, .header-right {
-    justify-content: center !important;
-  }
-}
 
 
 .preset-selector {

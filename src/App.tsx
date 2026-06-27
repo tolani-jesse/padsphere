@@ -188,7 +188,17 @@ function App() {
     } catch (error) {
       console.error('Updater check skipped or failed:', error);
       if (!silent) {
-        await message('Failed to check for updates. Please check your internet connection and try again.', { title: 'Update Failed', kind: 'error' });
+        const errStr = String(error);
+        let friendlyMessage = 'An unexpected error occurred while checking for updates.';
+        
+        if (errStr.toLowerCase().includes('error sending request') || errStr.toLowerCase().includes('network error')) {
+          friendlyMessage = 'Could not connect to the update server. Please check your internet connection.';
+        } else {
+          // Strip URLs from the error string to hide technical details
+          friendlyMessage = 'Update check failed: ' + errStr.replace(/https?:\/\/[^\s]+/g, 'the server');
+        }
+
+        await message(friendlyMessage, { title: 'Update Failed', kind: 'error' });
       }
     }
   };
