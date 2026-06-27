@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "PadSphere",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "identifier": "com.padsphere.desktop",
   "build": {
     "frontendDist": "../dist",
@@ -14,9 +14,9 @@
       {
         "title": "PadSphere",
         "width": 1000,
-        "height": 700,
-        "minWidth": 950,
-        "minHeight": 650,
+        "height": 620,
+        "minWidth": 900,
+        "minHeight": 600,
         "resizable": true,
         "fullscreen": false,
         "dragDropEnabled": false
