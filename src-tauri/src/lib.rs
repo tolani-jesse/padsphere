@@ -95,16 +95,26 @@ pub fn run() {
                     .item(&theme_crimson)
                     .build()
                 {
+                    let mut found_view = false;
                     if let Ok(items) = menu.items() {
                         for item in items.iter() {
                             if let Some(submenu) = item.as_submenu() {
                                 if let Ok(text) = submenu.text() {
                                     if text == "View" {
                                         let _ = submenu.append(&themes_submenu);
+                                        found_view = true;
                                         break;
                                     }
                                 }
                             }
+                        }
+                    }
+                    if !found_view {
+                        if let Ok(view_submenu) = SubmenuBuilder::new(handle, "View")
+                            .item(&themes_submenu)
+                            .build()
+                        {
+                            let _ = menu.append(&view_submenu);
                         }
                     }
                 }
