@@ -17,5 +17,11 @@ export const INBUILT_PRESETS: InbuiltPreset[] = [
     name: 'Calming Waves Pad',
     folderName: 'Calming Waves Pad',
     fileSuffix: ' - Calming Waves.mp3'
+  },
+  {
+    id: 'foundation',
+    name: 'Foundation Pad',
+    folderName: 'Foundation Pad',
+    fileSuffix: '.mp3'
   }
 ];
