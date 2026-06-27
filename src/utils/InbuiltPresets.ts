@@ -8,8 +8,8 @@ export interface InbuiltPreset {
 export const INBUILT_PRESETS: InbuiltPreset[] = [
   {
     id: 'default',
-    name: 'Warm Pads',
-    folderName: 'Warm Pads',
+    name: 'Warm Pad',
+    folderName: 'Warm Pad',
     fileSuffix: ' - WARM.mp3'
   },
   {

@@ -76,8 +76,8 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
 
   const handleDragLeave = (key: string, e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (dragActiveKey === key) {
-      setDragActiveKey(null);
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      setDragActiveKey(prev => prev === key ? null : prev);
     }
   };
 
@@ -127,8 +127,8 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
             if (nameError) setNameError(false);
           }}
           style={{
-            background: 'rgba(255,255,255,0.05)',
-            border: nameError ? '1px solid #f87171' : '1px solid rgba(255,255,255,0.1)',
+            background: 'var(--glass-bg-hover)',
+            border: nameError ? '1px solid var(--danger-light)' : '1px solid var(--glass-border-light)',
             color: 'white',
             padding: '0.8rem 1rem',
             borderRadius: '6px',
@@ -139,7 +139,7 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
           }}
         />
         {nameError && (
-          <span style={{ color: '#f87171', fontSize: '0.85rem' }}>
+          <span style={{ color: 'var(--danger-light)', fontSize: '0.85rem' }}>
             Please enter a name for your preset before saving.
           </span>
         )}
@@ -168,7 +168,7 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
             <div className="dropzone-key">{key}</div>
             <div className="dropzone-status">
               {errors[key] ? (
-                <span style={{ color: '#f87171' }}>{errors[key]}</span>
+                <span style={{ color: 'var(--danger-light)' }}>{errors[key]}</span>
               ) : files[key] ? (
                 (files[key] as File).name || 'Saved Audio File'
               ) : (

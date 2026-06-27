@@ -24,13 +24,15 @@ const keys = [
 export default function PianoKeyboard({ activeKey, onKeyClick, loadedKeys }: PianoKeyboardProps) {
   return (
     <div className="piano">
-      {keys.map((k) => {
+      {keys.map((k, index) => {
         const isLoaded = loadedKeys.includes(k.id);
+        const nextKey = keys[index + 1];
+        const isNextKeyActiveBlack = nextKey && nextKey.type === 'black' && activeKey === nextKey.id;
 
         return (
           <div
             key={k.id}
-            className={`key key-${k.type} key-id-${k.id.replace('#', 's').toLowerCase()} ${k.type === 'black' ? k.pos : ''} ${activeKey === k.id ? 'active' : ''} ${!isLoaded ? 'disabled' : ''}`}
+            className={`key key-${k.type} key-id-${k.id.replace('#', 's').toLowerCase()} ${k.type === 'black' ? k.pos : ''} ${activeKey === k.id ? 'active' : ''} ${!isLoaded ? 'disabled' : ''} ${isNextKeyActiveBlack ? 'hide-separator' : ''}`}
             onClick={() => {
               if (isLoaded) {
                 onKeyClick(k.id);

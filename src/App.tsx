@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Pencil, Plus, Download, Trash2 } from 'lucide-react';
 import JSZip from 'jszip';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { ask, message } from '@tauri-apps/plugin-dialog';
 import { listen } from '@tauri-apps/api/event';
+import { invoke } from '@tauri-apps/api/core';
 import './index.css';
 import PianoKeyboard from './components/PianoKeyboard';
 import GridKeyboard from './components/GridKeyboard';
@@ -17,6 +18,7 @@ import { INBUILT_PRESETS } from './utils/InbuiltPresets';
 
 function App() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [lastPlayedKey, setLastPlayedKey] = useState<string>('C');
   const [volume, setVolume] = useState(80);
   const [octave, setOctave] = useState(0);
   const [showUploader, setShowUploader] = useState(false);
@@ -29,6 +31,19 @@ function App() {
     return (localStorage.getItem('padsphere-layout') as 'piano' | 'grid') || 'piano';
   });
   
+  const [currentTheme, setCurrentTheme] = useState<string>(() => {
+    return localStorage.getItem('padsphere-theme') || 'midnight-dark';
+  });
+  
+  // Apply theme dynamically to document root
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('padsphere-theme', currentTheme);
+    
+    // Ensure native menu is completely synced to current UI state
+    invoke('sync_theme_menu', { theme: currentTheme }).catch(console.error);
+  }, [currentTheme]);
+
   const [isNewMenuOpen, setIsNewMenuOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -122,12 +137,20 @@ function App() {
     checkForUpdates(true);
 
     // Listen for manual checks from Native OS Menu
-    const unlisten = listen('trigger-update-check', () => {
+    const unlistenUpdate = listen('trigger-update-check', () => {
       checkForUpdates(false);
     });
 
+    // Listen for theme changes from Native OS Menu
+    const unlistenTheme = listen('change-theme', (event) => {
+      if (typeof event.payload === 'string') {
+        setCurrentTheme(event.payload);
+      }
+    });
+
     return () => {
-      unlisten.then(f => f());
+      unlistenUpdate.then(f => f());
+      unlistenTheme.then(f => f());
     };
   }, []);
 
@@ -170,16 +193,61 @@ function App() {
     }
   };
 
-  const handleKeyClick = async (key: string) => {
+  const handleKeyClick = useCallback(async (key: string) => {
     if (activeKey === key) {
       // Tap active key again to stop
       audioEngine.stop();
       setActiveKey(null);
     } else {
       setActiveKey(key);
+      setLastPlayedKey(key);
       await audioEngine.play(key, octave);
     }
-  };
+  }, [activeKey, octave]);
+
+  // Global Keyboard Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input field (e.g. saving preset)
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      const ALL_KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (activeKey) {
+          handleKeyClick(activeKey); // Stop if playing
+        } else {
+          // Play if stopped
+          if (loadedKeys.includes(lastPlayedKey) || loadedKeys.length === 0) {
+            handleKeyClick(lastPlayedKey);
+          }
+        }
+      } else if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') {
+        if (!activeKey) return; // Only work when something is playing
+
+        e.preventDefault();
+        const currentIndex = ALL_KEYS.indexOf(activeKey);
+        
+        if (currentIndex !== -1) {
+          let nextIndex = currentIndex;
+          if (e.code === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % ALL_KEYS.length;
+          } else if (e.code === 'ArrowLeft') {
+            nextIndex = (currentIndex - 1 + ALL_KEYS.length) % ALL_KEYS.length;
+          }
+          
+          const nextKey = ALL_KEYS[nextIndex];
+          if (loadedKeys.includes(nextKey) || loadedKeys.length === 0) {
+            handleKeyClick(nextKey); // Play it immediately
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeKey, lastPlayedKey, loadedKeys, handleKeyClick]);
 
   const handleVolumeChange = (v: number) => {
     setVolume(v);
