@@ -44,8 +44,7 @@ function App() {
     invoke('sync_theme_menu', { theme: currentTheme }).catch(console.error);
   }, [currentTheme]);
 
-  const [isNewMenuOpen, setIsNewMenuOpen] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+
 
   const [isLoading, setIsLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
@@ -269,55 +268,7 @@ function App() {
     await audioEngine.setOctave(o);
   };
 
-  const handleImportPreset = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setIsLoading(true);
-    
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      try {
-        const arrayBuffer = e.target?.result as ArrayBuffer;
-        const zip = await JSZip.loadAsync(arrayBuffer);
-        
-        let presetName = "Imported Preset";
-        const manifestFile = zip.file("manifest.json");
-        if (manifestFile) {
-          const manifestText = await manifestFile.async("string");
-          try {
-            const manifest = JSON.parse(manifestText);
-            if (manifest.name) presetName = manifest.name;
-          } catch {}
-        }
-        
-        const fileMap: Record<string, Blob> = {};
-        for (const [relativePath, zipEntry] of Object.entries(zip.files)) {
-          if (zipEntry.dir) continue;
-          
-          const match = relativePath.match(/^([A-G]s?|C_sharp|D_sharp|F_sharp|G_sharp|A_sharp)\.(mp3|wav|ogg|m4a|aac)$/i);
-          if (match) {
-            let key = match[1].toUpperCase();
-            if (key.endsWith('S') || key.endsWith('_SHARP')) {
-               key = key.charAt(0) + '#';
-            }
-            const blob = await zipEntry.async("blob");
-            fileMap[key] = blob;
-          }
-        }
-        
-        const newPreset = await presetStore.savePreset(presetName, fileMap, true);
-        await loadCustomPresets();
-        await loadPresetById(newPreset.id, activeKey);
-      } catch (err) {
-        console.error("Failed to import preset:", err);
-        setIsLoading(false);
-        alert("Failed to import preset. Invalid or corrupted .padsphere file.");
-      }
-    };
-    reader.readAsArrayBuffer(file);
-    e.target.value = ''; // Reset input
-    setIsNewMenuOpen(false);
-  };
+
 
 
   const currentPresetName = INBUILT_PRESETS.find(p => p.id === selectedPresetId)?.name 
@@ -385,23 +336,16 @@ function App() {
             </button>
 
             <button 
-              className={`btn ${isNewMenuOpen ? 'active' : ''}`}
+              className="btn"
               style={{ padding: '0.5rem 0.8rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}
-              onClick={() => setIsNewMenuOpen(true)}
+              onClick={() => setShowUploader(true)}
             >
-              <Plus size={18} /> New
+              <Plus size={18} /> Custom Preset
             </button>
           </div>
         </header>
 
-        {/* Hidden File Input for .padsphere imports */}
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          accept=".padsphere" 
-          style={{ display: 'none' }} 
-          onChange={handleImportPreset} 
-        />
+
 
         <main className="keyboard-container" style={{ position: 'relative' }}>
           {layout === 'piano' ? (
@@ -493,22 +437,7 @@ function App() {
         />
       )}
 
-      {isNewMenuOpen && (
-        <div className="presets-overlay" style={{ alignItems: 'center', justifyContent: 'center' }} onClick={() => setIsNewMenuOpen(false)}>
-          <div style={{ padding: '1.5rem', borderRadius: '12px', width: '300px', display: 'flex', flexDirection: 'column', gap: '0.8rem', background: '#1a1d27', border: '1px solid var(--glass-border)', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }} onClick={e => e.stopPropagation()}>
-            <div className="overlay-header" style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h2 className="title" style={{ fontSize: '1.1rem', margin: 0 }}>New Preset</h2>
-              <button className="btn" style={{ padding: '0.2rem 0.6rem' }} onClick={() => setIsNewMenuOpen(false)}>✕</button>
-            </div>
-            <button className="btn" style={{ fontSize: '0.9rem', padding: '0.8rem', textAlign: 'left', background: 'rgba(255,255,255,0.05)', border: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={() => { setShowUploader(true); setIsNewMenuOpen(false); }}>
-              <Plus size={16} /> Create Custom Preset
-            </button>
-            <button className="btn" style={{ fontSize: '0.9rem', padding: '0.8rem', textAlign: 'left', background: 'rgba(255,255,255,0.05)', border: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={() => { fileInputRef.current?.click(); setIsNewMenuOpen(false); }}>
-              <Download size={16} /> Import Preset (.padsphere)
-            </button>
-          </div>
-        </div>
-      )}
+
 
       {showLoader && (
         <div className="loader-overlay">
