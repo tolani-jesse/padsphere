@@ -15,6 +15,8 @@ import PresetEditorModal from './components/PresetEditorModal';
 import { audioEngine } from './utils/AudioEngine';
 import { presetStore, type CustomPreset } from './utils/PresetStore';
 import { INBUILT_PRESETS } from './utils/InbuiltPresets';
+import logoWhite from './assets/logo.png';
+import logoBlack from './assets/logo2.png';
 
 function App() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -320,7 +322,11 @@ function App() {
           </div>
           
           <div className="header-center" style={{ flex: '0 1 auto', textAlign: 'center' }}>
-            <h1 className="title" style={{ margin: 0 }}>PadSphere</h1>
+            <img 
+              src={currentTheme.includes('light') ? logoBlack : logoWhite} 
+              alt="PadSphere Logo" 
+              style={{ height: '30px', width: 'auto' }} 
+            />
           </div>
           
           <div className="header-right" style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '0.5rem' }}>
