@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { Pencil, Plus, Download, Trash2 } from 'lucide-react';
-import JSZip from 'jszip';
+import { useState, useEffect, useCallback } from 'react';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { ask, message } from '@tauri-apps/plugin-dialog';
