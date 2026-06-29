@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PadSphere Isolation</title>
+</head>
+<body>
+  <script>
+    // In Tauri v2, the isolation script hooks into all IPC messages.
+    // By simply having this hook, Tauri encrypts the IPC channel.
+    window.__TAURI_ISOLATION_HOOK__ = (payload) => {
+      // Passes the message through transparently while preserving the AES-GCM encryption
+      return payload;
+    };
+  </script>
+</body>
+</html>

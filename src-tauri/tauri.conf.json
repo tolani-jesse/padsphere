@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "PadSphere",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "identifier": "com.padsphere.desktop",
   "build": {
     "frontendDist": "../dist",
@@ -23,7 +23,13 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; img-src 'self' asset: https://asset.localhost; style-src 'self' 'unsafe-inline';",
+      "pattern": {
+        "use": "isolation",
+        "options": {
+          "dir": "../dist-isolation"
+        }
+      }
     }
   },
   "bundle": {

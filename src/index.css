@@ -820,5 +820,5 @@ body {
 }
 
 .dropzone.filled .dropzone-status {
-  color: #4ade80;
+  color: var(--accent);
 }

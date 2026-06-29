@@ -129,7 +129,7 @@ export default function CustomPresetUploader({ onClose, onPresetSaved, initialPr
           style={{
             background: 'var(--glass-bg-hover)',
             border: nameError ? '1px solid var(--danger-light)' : '1px solid var(--glass-border-light)',
-            color: 'white',
+            color: 'var(--text-primary)',
             padding: '0.8rem 1rem',
             borderRadius: '6px',
             width: '100%',
